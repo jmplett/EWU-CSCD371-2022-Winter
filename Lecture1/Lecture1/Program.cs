@@ -4,7 +4,7 @@ namespace Lecture1
 {
     class Program
     {
-        void Main()
+        public static void Main(String[]args)
         {
             string text = "Inigo Montoya";
             Guid guid = Guid.NewGuid();
