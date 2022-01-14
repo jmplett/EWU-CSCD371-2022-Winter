@@ -2,13 +2,13 @@
 {
     public class Person
     {
-        (string, string)[] Passwords = new[] { 
-            ("Inigo Montoya", "YouKilledMyF@ther!")
+        (string UserName, string Password)[] Credentials = new[] { 
+            (UserName: "Inigo.Montoya", Password: "YouKilledMyF@ther!")
         }; 
 
         public bool Login(string userName, string password)
         {
-            return password == "YouKilledMyF@ther!";
+            return (userName, password) == Credentials[0];
         }
     }
 }
