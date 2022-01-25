@@ -9,4 +9,10 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <None Remove="IntelliTect.Analyzers" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="IntelliTect.Analyzers" Version="0.1.8" />
+  </ItemGroup>
 </Project>

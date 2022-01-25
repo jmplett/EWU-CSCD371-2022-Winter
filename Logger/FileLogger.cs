@@ -16,7 +16,7 @@ namespace Logger
         {
             using StreamWriter logFile = new(FilePath);
             string currentTime = DateTime.Now.ToString();
-            logFile.WriteLine($"{currentTime} {logLevel}: {message}");
+            logFile.WriteLine($"{currentTime} {ClassName} {logLevel}: {message}");
         }
     }
 }
