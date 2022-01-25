@@ -16,4 +16,7 @@
     <ProjectReference Include="..\Logger\Logger.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Include="..\.editorconfig" />
+  </ItemGroup>
 </Project>
