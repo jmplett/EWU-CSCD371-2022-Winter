@@ -3,11 +3,11 @@ namespace Logger
 {
     public static class BaseLoggerMixins
     {
-        public static void Error(this BaseLogger? logger, string message, params object[] parameters)
+        public static void Error(this BaseLogger? baseLogger, string message, params object[] parameters)
         {
-            if (logger is null)
+            if (baseLogger is null)
             {
-                throw new ArgumentNullException(nameof(logger));
+                throw new ArgumentNullException(nameof(baseLogger));
             }
             else
             {
@@ -20,7 +20,7 @@ namespace Logger
             }
         }
 
-        public static void Warning(BaseLogger? baseLogger, string message, params object[] parameters)
+        public static void Warning(this BaseLogger? baseLogger, string message, params object[] parameters)
         {
             if (baseLogger == null)
             {
@@ -33,7 +33,7 @@ namespace Logger
             }
         }
 
-        public static void Information(BaseLogger? baseLogger, string message, params object[] parameters)
+        public static void Information(this BaseLogger? baseLogger, string message, params object[] parameters)
         {
             if (baseLogger == null)
             {
@@ -46,7 +46,7 @@ namespace Logger
             }
         }
 
-        public static void Debug(BaseLogger? baseLogger, string message, params object[] parameters)
+        public static void Debug(this BaseLogger? baseLogger, string message, params object[] parameters)
         {
             if (baseLogger == null)
             {
