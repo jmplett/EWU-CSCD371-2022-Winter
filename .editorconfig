@@ -1,10 +1,13 @@
 ﻿[*.cs]
 
 # Default severity for analyzer diagnostics with category 'Globalization'
+# We don't need the golobalization utilized in this project
 dotnet_analyzer_diagnostic.category-Globalization.severity = none
 
 # CA1707: Identifiers should not contain underscores
+# We were instructed that this is the proper way to name test methods
 dotnet_diagnostic.CA1707.severity = none
 
 # INTL0003: Methods PascalCase
+# We were told to not follow this in lecture
 dotnet_diagnostic.INTL0003.severity = none
