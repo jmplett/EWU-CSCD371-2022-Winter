@@ -9,12 +9,22 @@ namespace Logger.Tests
         [TestMethod]
         public void CreateLogger_WithValidFilePath_ReturnsFileLogger()
         {
-            var logFactory = new LogFactory();
+            LogFactory logFactory = new();
             logFactory.ConfigureFileLogger("filepath");
 
-            var logger = logFactory.CreateLogger(nameof(LogFactoryTests));
+            BaseLogger logger = logFactory.CreateLogger(nameof(LogFactoryTests));
 
             Assert.AreEqual("FileLogger", logger.GetType().Name);
         }
+
+       [TestMethod]
+       public void CreateLogger_WithoutValidFilePath_ReturnsNull()
+        {
+            LogFactory logFactory = new();
+            var logger = logFactory.CreateLogger(nameof(LogFactoryTests));
+            Assert.IsNull(logger);
+
+        }
+
     }
 }

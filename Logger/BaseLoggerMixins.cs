@@ -16,7 +16,7 @@ namespace Logger
                 {
                     logMessage = String.Format(logMessage, parameters);
                 }
-                logger.Log(LogLevel.Error, logMessage);
+                baseLogger.Log(LogLevel.Error, logMessage);
             }
         }
 
