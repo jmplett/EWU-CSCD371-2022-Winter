@@ -9,21 +9,13 @@ namespace Logger.Tests
     {
         [TestMethod]
         [ExpectedException(typeof(ArgumentNullException))]
-        public void Error_WithNullLogger_ThrowsException()
-        {
-            // Arrange
-
-            // Act
-            BaseLoggerMixins.Error(null, "");
-
-            // Assert
-        }
+        public void Error_WithNullLogger_ThrowsException() => BaseLoggerMixins.Error(null, "");
 
         [TestMethod]
         public void Error_WithData_LogsMessage()
         {
             // Arrange
-            var logger = new TestLogger();
+            TestLogger logger = new();
 
             // Act
             logger.Error("Message {0}", 42);
@@ -36,21 +28,13 @@ namespace Logger.Tests
 
         [TestMethod]
         [ExpectedException(typeof(ArgumentNullException))]
-        public void Warning_WithNullLogger_ThrowsException()
-        {
-            // Arrange
-
-            // Act
-            BaseLoggerMixins.Warning(null, "");
-
-            // Assert
-        }
+        public void Warning_WithNullLogger_ThrowsException() => BaseLoggerMixins.Warning(null, "");
 
         [TestMethod]
         public void Warning_WithData_LogsMessage()
         {
             // Arrange
-            var logger = new TestLogger();
+            TestLogger logger = new();
 
             // Act
             logger.Warning("Message {0}", 42);
@@ -63,21 +47,13 @@ namespace Logger.Tests
 
         [TestMethod]
         [ExpectedException(typeof(ArgumentNullException))]
-        public void Information_WithNullLogger_ThrowsException()
-        {
-            // Arrange
-
-            // Act
-            BaseLoggerMixins.Information(null, "");
-
-            // Assert
-        }
+        public void Information_WithNullLogger_ThrowsException() => BaseLoggerMixins.Information(null, "");
 
         [TestMethod]
         public void Information_WithData_LogsMessage()
         {
             // Arrange
-            var logger = new TestLogger();
+            TestLogger logger = new();
 
             // Act
             logger.Information("Message {0}", 42);
@@ -90,21 +66,13 @@ namespace Logger.Tests
 
         [TestMethod]
         [ExpectedException(typeof(ArgumentNullException))]
-        public void Debug_WithNullLogger_ThrowsException()
-        {
-            // Arrange
-
-            // Act
-            BaseLoggerMixins.Debug(null, "");
-
-            // Assert
-        }
+        public void Debug_WithNullLogger_ThrowsException() => BaseLoggerMixins.Debug(null, "");
 
         [TestMethod]
         public void Debug_WithData_LogsMessage()
         {
             // Arrange
-            var logger = new TestLogger();
+            TestLogger logger = new();
 
             // Act
             logger.Debug("Message {0}", 42);
@@ -114,9 +82,6 @@ namespace Logger.Tests
             Assert.AreEqual(LogLevel.Debug, logger.LoggedMessages[0].LogLevel);
             Assert.AreEqual("Message 42", logger.LoggedMessages[0].Message);
         }
-
-        
-
     }
 
     public class TestLogger : BaseLogger
