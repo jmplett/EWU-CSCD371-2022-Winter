@@ -3,7 +3,7 @@ namespace CanHazFunny
 {
 	public interface IWriteLine
 	{
-		public void WriteLine(String text);
+		public void PrintToConsole(String text);
 	}
 }
 
