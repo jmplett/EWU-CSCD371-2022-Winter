@@ -1,4 +1,5 @@
 ﻿using System.Net.Http;
+using System;
 
 namespace CanHazFunny
 {
@@ -8,7 +9,8 @@ namespace CanHazFunny
 
         public string GetJoke()
         {
-            string joke = HttpClient.GetStringAsync("https://geek-jokes.sameerkumar.website/api").Result;
+            Uri uri = new Uri("https://geek-jokes.sameerkumar.website/api");
+            string joke = HttpClient.GetStringAsync(uri).Result;
             return joke;
         }
     }
