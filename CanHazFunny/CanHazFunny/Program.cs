@@ -4,7 +4,12 @@
     {
         static void Main(string[] args)
         {
-            new Jester(new JokeService(), new WriteLine()).TellJoke();
+           Jester jester = new Jester(new JokeService(), new WriteLine());
+
+            for(int i = 0; i < 10; i++)
+            {
+                jester.TellJoke();
+            }
 
         }
     }

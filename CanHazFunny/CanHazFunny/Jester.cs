@@ -22,7 +22,7 @@ namespace CanHazFunny
         {
 			string joke = _JokeService.GetJoke();
 
-			while (joke.Contains("Chuck", StringComparison.OrdinalIgnoreCase) || joke.Contains("No", StringComparison.OrdinalIgnoreCase))
+			while (joke.Contains("Chuck", StringComparison.OrdinalIgnoreCase) || joke.Contains("Norris", StringComparison.OrdinalIgnoreCase))
 			{
 				joke = _JokeService.GetJoke();
 			}
