@@ -12,10 +12,15 @@ namespace CanHazFunny.Tests
         {
             StringWriter stringWriter = new();
             Console.SetOut(stringWriter);
-            WriteLine.PrintToConsole("Inigo Montoya");
+            WriteLine writeLine = new();
 
-            Assert.AreEqual<string>("Inigo Montoya", stringWriter.ToString());
+#pragma warning disable CA1303 // The string is only used for testing.
+            writeLine.PrintToConsole("Inigo Montoya");
+#pragma warning restore CA1303 // The string is only used for testing.
 
+            Assert.AreEqual<string>("Inigo Montoya", stringWriter.ToString().TrimEnd());
+            
+            stringWriter.Dispose();
         }
     }
 
