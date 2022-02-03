@@ -1,6 +1,7 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 
+
 namespace CanHazFunny.Tests
 {
     [TestClass]
@@ -15,14 +16,5 @@ namespace CanHazFunny.Tests
         [ExpectedException(typeof(ArgumentNullException))]
         public void SimpleTest_WithNullWriteLine_ThrowsException() => new Jester(new JokeService(), null);
 
-        [TestMethod]
-        public void TellJoke_ReturnString_SucessGetString()
-        {
-
-        }
-
-
     }
-
-
 }

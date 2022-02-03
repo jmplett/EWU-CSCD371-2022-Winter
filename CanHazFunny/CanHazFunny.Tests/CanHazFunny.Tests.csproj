@@ -24,5 +24,6 @@
 
   <ItemGroup>
     <None Remove="IntelliTect.Analyzers" />
+    <None Remove="NewFile1.txt" />
   </ItemGroup>
 </Project>
