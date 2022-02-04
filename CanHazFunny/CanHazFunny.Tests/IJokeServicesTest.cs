@@ -1,5 +1,4 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System;
 using System.Collections.Generic;
 using Moq;
 
@@ -13,10 +12,9 @@ namespace CanHazFunny.Tests
         {
             List<string> jokeList = new();
             jokeList.Add("Joke");
-            Random random = new Random();
-
+            
             Mock<IJokeService> mockJokeService = new();
-            mockJokeService.Setup(x => x.GetJoke()).Returns(jokeList[random.Next(jokeList.Count)]);
+            mockJokeService.Setup(x => x.GetJoke()).Returns(jokeList[0]);
 
             Assert.AreEqual<string>("Joke", mockJokeService.Object.GetJoke());
         }

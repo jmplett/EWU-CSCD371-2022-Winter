@@ -41,12 +41,10 @@ namespace CanHazFunny.Tests
 
             Jester jester = new(mockJokeService.Object, writeLine);
 
-
             StringWriter stringWriter = new();
             Console.SetOut(stringWriter);
 
             jester.TellJoke();
-
 
             Assert.AreEqual<string>("Valid Joke", stringWriter.ToString().TrimEnd());
 
@@ -54,25 +52,22 @@ namespace CanHazFunny.Tests
         }
 
         [TestMethod]
-        public void SimpleTest_ValidJokeGivenToT_Success()
+        public void SimpleTest_ValidJokeGivenTo_Success()
         {
             List<string> jokeList = new();
             jokeList.Add("Valid Joke");
-            Random random = new Random();
-
+            
             Mock<IJokeService> mockJokeService = new();
-            mockJokeService.Setup(x => x.GetJoke()).Returns(jokeList[random.Next(jokeList.Count)]);
+            mockJokeService.Setup(x => x.GetJoke()).Returns(jokeList[0]);
 
             WriteLine writeLine = new WriteLine();
 
             Jester jester = new(mockJokeService.Object, writeLine);
 
-
             StringWriter stringWriter = new();
             Console.SetOut(stringWriter);
 
             jester.TellJoke();
-
 
             Assert.AreEqual<string>("Valid Joke", stringWriter.ToString().TrimEnd());
 

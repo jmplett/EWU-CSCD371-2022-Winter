@@ -14,9 +14,9 @@ namespace CanHazFunny.Tests
             Console.SetOut(stringWriter);
             WriteLine writeLine = new();
 
-#pragma warning disable CA1303 // The string is only used for testing.
+            #pragma warning disable CA1303 // The string is only used for testing.
             writeLine.PrintToConsole("Inigo Montoya");
-#pragma warning restore CA1303 // The string is only used for testing.
+            #pragma warning restore CA1303 // The string is only used for testing.
 
             Assert.AreEqual<string>("Inigo Montoya", stringWriter.ToString().TrimEnd());
             
