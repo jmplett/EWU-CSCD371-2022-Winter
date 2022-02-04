@@ -1,6 +1,8 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Moq;
 using System;
-
+using System.Collections.Generic;
+using System.IO;
 
 namespace CanHazFunny.Tests
 {
@@ -15,6 +17,34 @@ namespace CanHazFunny.Tests
         [TestMethod]
         [ExpectedException(typeof(ArgumentNullException))]
         public void SimpleTest_WithNullWriteLine_ThrowsException() => new Jester(new JokeService(), null);
+
+        [TestMethod]
+        public void GetJoke_WithRemovalOfChuckNorris_Success()
+        {
+            List<string> jokeList = new();
+            jokeList.Add("Chuck Norris");
+            jokeList.Add("Valid Joke");
+            jokeList.Add("Chuck... Chuck... Chuck....");
+            Random random = new Random();
+
+            Mock<IJokeService> mockJokeService = new();
+            mockJokeService.Setup(x => x.GetJoke()).Returns(jokeList[random.Next(jokeList.Count)]);
+
+            WriteLine writeLine = new WriteLine(); 
+
+            Jester jester = new(mockJokeService.Object, writeLine);
+
+
+            StringWriter stringWriter = new();
+            Console.SetOut(stringWriter);
+
+            jester.TellJoke();
+
+
+            Assert.AreEqual<string>("Valid Joke", stringWriter.ToString().TrimEnd());
+
+            stringWriter.Dispose();
+        }
 
     }
 }

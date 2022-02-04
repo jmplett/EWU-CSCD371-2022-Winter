@@ -3,10 +3,10 @@ namespace CanHazFunny
 {
 	public class Jester
 	{
-		private JokeService _JokeService;
-		private WriteLine _WriteLine;
+		private IJokeService _JokeService;
+		private IWriteLine _WriteLine;
 			
-		public Jester(JokeService? jokeService, WriteLine? output)
+		public Jester(IJokeService? jokeService, IWriteLine? output)
 		{
 			if(jokeService == null)
 				throw new ArgumentNullException(nameof(jokeService));
