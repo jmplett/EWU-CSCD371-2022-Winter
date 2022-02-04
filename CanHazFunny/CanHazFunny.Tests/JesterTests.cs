@@ -29,14 +29,13 @@ namespace CanHazFunny.Tests
         [TestMethod]
         public void GetJoke_WithRemovalOfChuckNorris_Success()
         {
-            List<string> jokeList = new();
-            jokeList.Add("Chuck Norris");
-            jokeList.Add("Valid Joke");
-            jokeList.Add("Chuck... Chuck... Chuck....");
-            Random random = new Random();
-
             Mock<IJokeService> mockJokeService = new();
-            mockJokeService.Setup(x => x.GetJoke()).Returns(jokeList[random.Next(jokeList.Count)]);
+            mockJokeService
+                .SetupSequence(x => x.GetJoke())
+                .Returns("Chuck... Chuck... Chuck...")
+                .Returns("Why another Chuck Norris")
+                .Returns("My Last name is Norris")
+                .Returns("Valid Joke");
 
             WriteLine writeLine = new WriteLine(); 
 
@@ -54,7 +53,31 @@ namespace CanHazFunny.Tests
             stringWriter.Dispose();
         }
 
+        [TestMethod]
+        public void SimpleTest_ValidJokeGivenToT_Success()
+        {
+            List<string> jokeList = new();
+            jokeList.Add("Valid Joke");
+            Random random = new Random();
 
+            Mock<IJokeService> mockJokeService = new();
+            mockJokeService.Setup(x => x.GetJoke()).Returns(jokeList[random.Next(jokeList.Count)]);
+
+            WriteLine writeLine = new WriteLine();
+
+            Jester jester = new(mockJokeService.Object, writeLine);
+
+
+            StringWriter stringWriter = new();
+            Console.SetOut(stringWriter);
+
+            jester.TellJoke();
+
+
+            Assert.AreEqual<string>("Valid Joke", stringWriter.ToString().TrimEnd());
+
+            stringWriter.Dispose();
+        }
 
     }
 }
