@@ -19,6 +19,14 @@ namespace CanHazFunny.Tests
         public void SimpleTest_WithNullWriteLine_ThrowsException() => new Jester(new JokeService(), null);
 
         [TestMethod]
+        public void SimpleTest_CreateJester_Success()
+        {
+            Jester jester = new Jester(new JokeService(), new WriteLine());
+            Assert.IsInstanceOfType(jester, typeof(Jester));
+        }
+
+
+        [TestMethod]
         public void GetJoke_WithRemovalOfChuckNorris_Success()
         {
             List<string> jokeList = new();
@@ -45,6 +53,8 @@ namespace CanHazFunny.Tests
 
             stringWriter.Dispose();
         }
+
+
 
     }
 }
