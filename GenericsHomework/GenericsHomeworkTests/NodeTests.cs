@@ -98,5 +98,28 @@ namespace GenericsHomeworkTests
 
             Assert.AreEqual("[Node 1, Node 4, Node 3, Node 2]", node.ToString());
         }
+        [TestMethod]
+        public void SimpleTest_ClearAllButHead_SimpleReturn()
+        {
+            Node<String> node = new("Node 1");
+            node.Clear();
+
+            Assert.AreEqual(1, node.Size);
+        }
+
+        [TestMethod]
+        public void SimpleTest_ClearAllButHead_NextReturnsCorrectSize()
+        {
+            Node<String> node = new("Node 1");
+            node.Append("Pie");
+            node.Append("Moon");
+            node.Append("Mines");
+            node.Append("Spys");
+            Node<String> next = node.Next;
+
+            node.Clear();
+
+            Assert.AreEqual(4, next.Size);
+        }
     }
 }
