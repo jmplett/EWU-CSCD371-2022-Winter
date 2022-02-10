@@ -12,7 +12,7 @@ namespace GenericsHomeworkTests
         public void SimpleTest_CreateNode_Success()
         {
             Node<String> node = new("Hello");
-            Assert.AreEqual(1, node.Size);
+            Assert.AreEqual(1, node.Count);
         }
 
         [TestMethod]
@@ -77,7 +77,7 @@ namespace GenericsHomeworkTests
 
             node.Clear();
 
-            Assert.AreEqual(1, node.Size);
+            Assert.AreEqual(1, node.Count);
         }
 
         [TestMethod]
@@ -104,7 +104,7 @@ namespace GenericsHomeworkTests
             Node<String> node = new("Node 1");
             node.Clear();
 
-            Assert.AreEqual(1, node.Size);
+            Assert.AreEqual(1, node.Count);
         }
 
         [TestMethod]
@@ -119,7 +119,7 @@ namespace GenericsHomeworkTests
 
             node.Clear();
 
-            Assert.AreEqual(4, next.Size);
+            Assert.AreEqual(4, next.Count);
         }
     }
 }
