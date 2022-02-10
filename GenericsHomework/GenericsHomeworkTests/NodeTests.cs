@@ -47,6 +47,7 @@ namespace GenericsHomeworkTests
             Assert.AreEqual(node.Size, 1);
             node.Append("Pie");
             Assert.AreEqual(node.Size, 2);
+
         }
 
         [TestMethod]
@@ -58,7 +59,10 @@ namespace GenericsHomeworkTests
             node.Append("Mines");
             node.Append("Spys");
 
-            Assert.IsTrue(node.Exists("Moon")); //Only works for the final amended 
+            node.Exists("Pie");
+            node.Exists("Moon");
+            node.Exists("Mines");
+            node.Exists("Spys");
         }
 
         [TestMethod]
@@ -90,8 +94,6 @@ namespace GenericsHomeworkTests
         {
             Node<String> node = new("Node 1");
             node.Append("Node 1");
-
-
         }
     }
 }

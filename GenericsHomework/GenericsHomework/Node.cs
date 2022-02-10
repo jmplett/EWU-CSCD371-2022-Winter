@@ -47,18 +47,18 @@
 
         public bool Exists(T value)
         {
-            for(int i = 0 ; i < Size; i++)
+            Node<T> cursor = this;
+            for (int i = 0 ; i < Size; i++)
             {
-                Node<T> cursor = _Next;
                 if (cursor.Value is null)
                 {
                     throw new Exception();
                 }
                 if (cursor.Value.Equals(value))
                 {
-                return true;
+                    return true;
                 }
-                
+                cursor = cursor.Next;
             }
             return false;
         }
@@ -68,10 +68,31 @@
             string result = $"{this.Value}";
             for (int i = 0; i < Size; i++)
             {
-                cursor = _Next;
+                cursor = cursor.Next;
                 result = $"{result}, {cursor.Value}";
             }
             return result;
+        }
+
+        public void Clear()
+        {
+            if (Next.Equals(this))
+            {
+                return;
+            }
+
+            Node<T> last = this;
+            while(last.Next != this)
+            {
+                last = last.Next;
+            }
+            last._Next = Next;
+            _Next = this;
+
+            int[] size = { 1 };
+            this._Size = size;
+
+            last._Size[0]--;
         }
     }
 }
