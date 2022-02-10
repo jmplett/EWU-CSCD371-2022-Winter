@@ -16,6 +16,13 @@ namespace GenericsHomeworkTests
         }
 
         [TestMethod]
+        [ExpectedException(typeof(ArgumentNullException))]
+        public void SimpleTest_CreateNodeWithNullValue_ThrowsExeption()
+        {
+            Node<String> node = new(null);
+        }
+
+        [TestMethod]
         public void SimpleTest_CreateNewNode_ValueReturnsCorrectValue()
         {
             Node<String> node = new("Hello");
@@ -74,6 +81,17 @@ namespace GenericsHomeworkTests
             node.Append("Pie");
 
             Assert.AreEqual("Pie", node.Next.Value);
+        }
+
+
+        [TestMethod]
+        [ExpectedException(typeof(ArgumentNullException))]
+        public void SimpleTest_AddingNewNodeThatIsSameAsExistingNode_ThrowsExcpetion()
+        {
+            Node<String> node = new("Node 1");
+            node.Append("Node 1");
+
+
         }
     }
 }
