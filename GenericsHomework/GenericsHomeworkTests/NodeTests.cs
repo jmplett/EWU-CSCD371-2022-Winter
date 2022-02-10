@@ -36,6 +36,7 @@ namespace GenericsHomeworkTests
             Assert.AreEqual(node.Size, 1);
             node.Append("Pie");
             Assert.AreEqual(node.Size, 2);
+            Assert.AreEqual(node.Next.Size, 2);
         }
 
         [Ignore]
@@ -48,7 +49,6 @@ namespace GenericsHomeworkTests
             Assert.AreEqual(node.Size, 2);
         }
 
-        [Ignore]
         [TestMethod]
         public void SimpleTest_NodeExists_ReturnsTrue()
         {

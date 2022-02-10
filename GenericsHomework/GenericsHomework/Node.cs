@@ -62,5 +62,16 @@
             }
             return false;
         }
+        public override string ToString()
+        {
+            Node<T> cursor = this;
+            string result = $"{this.Value}";
+            for (int i = 0; i < Size; i++)
+            {
+                cursor = _Next;
+                result = $"{result}, {cursor.Value}";
+            }
+            return result;
+        }
     }
 }
