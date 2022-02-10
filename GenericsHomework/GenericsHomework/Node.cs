@@ -5,77 +5,60 @@
         private int[] _Size = { 0 }; //should be converted to a shared int using pointers
         private Node<T> _Next;
         private T _Value;
-        public T Value {
-            get
-            {
-                return _Value;
-            }
-            set
-            {
-                if (value == null)
-                {
-                    throw new ArgumentNullException(nameof(value));
-                }
-                _Value = value;
-            } }
-        public int Size { get => _Size[0]; }
-
-        public Node<T> Next {
-            get
-            {
-                return _Next;
-            }
-            private set
-            {
-                if(value == null)
-                {
-                    throw new ArgumentNullException(nameof(value));
-                }
-                _Next = value;
-            } 
-        }
+        public T Value => _Value;
+        public int Size => _Size[0];
+        public Node<T> Next => _Next;
 
         public Node(T value)
             {
-            if (value == null)
+            if (value is null)
             {
                 throw new ArgumentNullException(nameof(value));
             }
-            Next = this;
-            Value = value;
+            _Next = this;
+            _Value = value;
             _Size[0]++;
             }
 
         private Node(T value, Node<T> next, int[] size)
         {
-            if (value == null)
+            if (value is null)
             {
                 throw new ArgumentNullException(nameof(value));
             }
-            Next = next;
-            Value = value;
+            _Next = next;
+            _Value = value;
             _Size = size;
             _Size[0]++;
         }
 
         public void Append(T value)
         {
+            if (value is null)
+            {
+                throw new ArgumentNullException(nameof(value));
+            }
             if (Exists(value))
             {
                 throw new Exception();
             }
-            Next = new Node<T>(value, Next, _Size);
+            _Next = new Node<T>(value, _Next, _Size);
         }
 
-        private bool Exists(T value)
+        public bool Exists(T value)
         {
             for(int i = 0 ; i < Size; i++)
             {
-                Node<T> cursor = Next;
+                Node<T> cursor = _Next;
+                if (cursor.Value is null)
+                {
+                    throw new Exception();
+                }
                 if (cursor.Value.Equals(value))
                 {
-                    return true;
+                return true;
                 }
+                
             }
             return false;
         }

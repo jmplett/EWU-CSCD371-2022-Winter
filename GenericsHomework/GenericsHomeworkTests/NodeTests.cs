@@ -85,7 +85,7 @@ namespace GenericsHomeworkTests
 
 
         [TestMethod]
-        [ExpectedException(typeof(ArgumentNullException))]
+        [ExpectedException(typeof(Exception))]
         public void SimpleTest_AddingNewNodeThatIsSameAsExistingNode_ThrowsExcpetion()
         {
             Node<String> node = new("Node 1");
