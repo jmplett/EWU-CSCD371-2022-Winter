@@ -1,6 +1,6 @@
 ﻿namespace GenericsHomework
 {
-    public class Node<T>
+    public class Node<T> where T : notnull
     {
         private int[] _Size = { 0 }; //should be converted to a shared int using pointers
         private Node<T> _Next;
@@ -11,7 +11,7 @@
 
         public Node(T value)
             {
-            if (value is null)
+            if(value is null)
             {
                 throw new ArgumentNullException(nameof(value));
             }
@@ -34,13 +34,9 @@
 
         public void Append(T value)
         {
-            if (value is null)
-            {
-                throw new ArgumentNullException(nameof(value));
-            }
             if (Exists(value))
             {
-                throw new Exception();
+                throw new ArgumentException(message: "Value already exists in these nodes", nameof(value));
             }
             _Next = new Node<T>(value, _Next, _Size);
         }
@@ -50,10 +46,6 @@
             Node<T> cursor = this;
             for (int i = 0 ; i < Size; i++)
             {
-                if (cursor.Value is null)
-                {
-                    throw new Exception();
-                }
                 if (cursor.Value.Equals(value))
                 {
                     return true;
