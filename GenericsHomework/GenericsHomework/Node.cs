@@ -2,11 +2,11 @@
 {
     public class Node<T> where T : notnull
     {
-        private long[] _Size = { 0 }; //should be converted to a shared long using pointers
+        private int[] _Size = { 0 }; //should be converted to a shared int using pointers
         private Node<T> _Next;
         private T _Value;
         public T Value => _Value;
-        public long Size => _Size[0];
+        public int Size => _Size[0];
         public Node<T> Next => _Next;
         private Node<T> Last
         {
@@ -32,7 +32,7 @@
             _Size[0]++;
             }
 
-        private Node(T value, Node<T> next, long[] size)
+        private Node(T value, Node<T> next, int[] size)
         {
             if (value is null)
             {
@@ -84,13 +84,14 @@
             {
                 return;
             }
+            _Size[0]--;
             Last._Next = Next;
+
             _Next = this;
 
-            long[] size = { 1 };
+            int[] size = { 1 };
             this._Size = size;
 
-            Last._Size[0]--;
         }
     }
 }

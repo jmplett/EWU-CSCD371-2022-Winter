@@ -12,42 +12,14 @@ namespace GenericsHomeworkTests
         public void SimpleTest_CreateNode_Success()
         {
             Node<String> node = new("Hello");
-            Assert.AreEqual(node.Size, 1);
+            Assert.AreEqual(1, node.Size);
         }
 
         [TestMethod]
-        [ExpectedException(typeof(ArgumentNullException))]
-        public void SimpleTest_CreateNodeWithNullValue_ThrowsExeption()
-        {
-            Node<String> node = new(null);
-        }
-
-        [TestMethod]
-        public void SimpleTest_CreateNewNode_ValueReturnsCorrectValue()
+        public void SimpleTest_CreateNewNode_ToStringReturnsCorrectToString()
         {
             Node<String> node = new("Hello");
-            Assert.AreEqual(node.Value, "Hello");
-        }
-
-        [TestMethod]
-        public void NodeListIsNull_AppendNode_Success()
-        {
-            Node<String> node = new("Node 1");
-            Assert.AreEqual(node.Size, 1);
-            node.Append("Pie");
-            Assert.AreEqual(node.Size, 2);
-            Assert.AreEqual(node.Next.Size, 2);
-        }
-
-        [Ignore]
-        [TestMethod]
-        public void SimpleTest_ClearNode_Success()
-        {
-            Node<String> node = new("Node 1");
-            Assert.AreEqual(node.Size, 1);
-            node.Append("Pie");
-            Assert.AreEqual(node.Size, 2);
-
+            Assert.AreEqual("Hello", node.Value);
         }
 
         [TestMethod]
@@ -74,12 +46,12 @@ namespace GenericsHomeworkTests
             node.Append("Mines");
             node.Append("Spys");
 
-            Assert.IsFalse(node.Exists("Justin")); //Only works for the final amended 
+            Assert.IsFalse(node.Exists("Justin"));
         }
 
 
         [TestMethod]
-        public void SimpleTest_CreateLinkedNodes_NextReturnsValueOfSecondNode()
+        public void SimpleTest_CreateLinkedNodes_NextReturnsToStringOfSecondNode()
         {
             Node<String> node = new("Node 1");
             node.Append("Pie");
@@ -94,6 +66,18 @@ namespace GenericsHomeworkTests
         {
             Node<String> node = new("Node 1");
             node.Append("Node 1");
+        }
+
+        [TestMethod]
+        public void SimpleTest_ClearAllButHead_ReturnsSizeOfOne()
+        {
+            Node<String> node = new("Node 1");
+            node.Append("Pie");
+
+
+            node.Clear();
+
+            Assert.AreEqual(1, node.Size);
         }
     }
 }
