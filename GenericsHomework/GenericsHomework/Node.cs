@@ -66,7 +66,7 @@
         {
             Node<T> cursor = this;
             string result = $"{this.Value}";
-            for (int i = 0; i < Size; i++)
+            for (int i = 1; i < Size; i++)
             {
                 cursor = cursor.Next;
                 result = $"{result}, {cursor.Value}";
