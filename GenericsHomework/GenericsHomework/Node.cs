@@ -2,12 +2,24 @@
 {
     public class Node<T> where T : notnull
     {
-        private int[] _Size = { 0 }; //should be converted to a shared int using pointers
+        private long[] _Size = { 0 }; //should be converted to a shared long using pointers
         private Node<T> _Next;
         private T _Value;
         public T Value => _Value;
-        public int Size => _Size[0];
+        public long Size => _Size[0];
         public Node<T> Next => _Next;
+        private Node<T> Last
+        {
+            get
+            {
+                Node<T> last = this;
+                while (last.Next != this)
+                {
+                    last = last.Next;
+                }
+                return last;
+            }
+        }
 
         public Node(T value)
             {
@@ -20,7 +32,7 @@
             _Size[0]++;
             }
 
-        private Node(T value, Node<T> next, int[] size)
+        private Node(T value, Node<T> next, long[] size)
         {
             if (value is null)
             {
@@ -63,7 +75,7 @@
                 cursor = cursor.Next;
                 result = $"{result}, {cursor.Value}";
             }
-            return result;
+            return $"[{result}]";
         }
 
         public void Clear()
@@ -72,19 +84,13 @@
             {
                 return;
             }
-
-            Node<T> last = this;
-            while(last.Next != this)
-            {
-                last = last.Next;
-            }
-            last._Next = Next;
+            Last._Next = Next;
             _Next = this;
 
-            int[] size = { 1 };
+            long[] size = { 1 };
             this._Size = size;
 
-            last._Size[0]--;
+            Last._Size[0]--;
         }
     }
 }
