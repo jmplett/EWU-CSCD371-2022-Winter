@@ -79,5 +79,24 @@ namespace GenericsHomeworkTests
 
             Assert.AreEqual(1, node.Size);
         }
+
+        [TestMethod]
+        public void SimpleTest_CallToStringOnSingularNode_Success()
+        {
+            Node<String> node = new("Node 1");
+
+            Assert.AreEqual("[Node 1]", node.ToString());
+        }
+
+        [TestMethod]
+        public void SimpleTest_CallToStringOnMultipleNodes_Success()
+        {
+            Node<String> node = new("Node 1");
+            node.Append("Node 2");
+            node.Append("Node 3");
+            node.Append("Node 4");
+
+            Assert.AreEqual("[Node 1, Node 4, Node 3, Node 2]", node.ToString());
+        }
     }
 }
