@@ -14,4 +14,9 @@
     <ProjectReference Include="..\Assignment.Interfaces\Assignment.Interfaces.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Compile Condition=" '$(EnableDefaultCompileItems)' == 'true' " Update="Person.cs">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Compile>
+  </ItemGroup>
 </Project>
