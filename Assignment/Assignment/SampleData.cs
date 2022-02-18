@@ -12,7 +12,8 @@ namespace Assignment
         // 2.
         public IEnumerable<string> GetUniqueSortedListOfStatesGivenCsvRows()
         {
-           return CsvRows.ToList().Select(item => item.Split(',')[6]).Distinct();
+
+           return CsvRows.ToList().Select(item => item.Split(',')[6]).Distinct().OrderBy(item=>item);
         }
 
         // 3.

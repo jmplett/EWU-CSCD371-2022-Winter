@@ -24,10 +24,18 @@ namespace Assignment.Tests
         }
 
 		[TestMethod]
-		public void SortsRowsByState_ChecksIfStatesAreUnique_SuccessWhenCountIsSameWhenCallingDistinct()
+		public void SortsRowsByState_ChecksIfStatesAreUnique_SuccessDistinctIsTrue()
         {
 			SampleData testData = new();
-			Assert.AreEqual(Enumerable.Count(testData.GetUniqueSortedListOfStatesGivenCsvRows()), Enumerable.Count(testData.GetUniqueSortedListOfStatesGivenCsvRows().Distinct()));
+			Assert.IsTrue(testData.CsvRows.SequenceEqual(testData.CsvRows.Distinct()));
+        }
+
+		[TestMethod]
+		public void SortRowsByState_ChecksIfStatesInOrder_SuccessWhenInOrder()
+        {
+			SampleData testData = new();
+			testData.GetUniqueSortedListOfStatesGivenCsvRows();
+			Assert.IsTrue(testData.CsvRows.SequenceEqual(testData.CsvRows.OrderBy(item=>item)));
         }
 	}
 }
