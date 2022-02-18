@@ -6,7 +6,8 @@ namespace Assignment
     public class SampleData : ISampleData
     {
         // 1.
-        public IEnumerable<string> CsvRows => throw new NotImplementedException();
+        public IEnumerable<string> CsvRows
+            => File.ReadAllLines("./People.csv").Skip(1);
 
         // 2.
         public IEnumerable<string> GetUniqueSortedListOfStatesGivenCsvRows() 
@@ -26,5 +27,6 @@ namespace Assignment
         // 6.
         public string GetAggregateListOfStatesGivenPeopleCollection(
             IEnumerable<IPerson> people) => throw new NotImplementedException();
+
     }
 }
