@@ -15,6 +15,20 @@ namespace Assignment.Tests
 			Assert.AreEqual("50,Claudell,Leathe,cleathe1d@columbia.edu,30262 Steensland Way,Newport News,VA,87930", testData.CsvRows.Last());
 			Assert.AreEqual(50, Enumerable.Count(testData.CsvRows));
 		}
+
+		[TestMethod]
+		public void SortsRowsByState_CountsNumberOfUniqueStates_SuccessWhen27States()
+        {
+			SampleData testData = new();
+			Assert.AreEqual(27,Enumerable.Count(testData.GetUniqueSortedListOfStatesGivenCsvRows()));
+        }
+
+		[TestMethod]
+		public void SortsRowsByState_ChecksIfStatesAreUnique_SuccessWhenCountIsSameWhenCallingDistinct()
+        {
+			SampleData testData = new();
+			Assert.AreEqual(Enumerable.Count(testData.GetUniqueSortedListOfStatesGivenCsvRows()), Enumerable.Count(testData.GetUniqueSortedListOfStatesGivenCsvRows().Distinct()));
+        }
 	}
 }
 

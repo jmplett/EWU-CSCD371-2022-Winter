@@ -10,8 +10,10 @@ namespace Assignment
             => File.ReadAllLines("./People.csv").Skip(1);
 
         // 2.
-        public IEnumerable<string> GetUniqueSortedListOfStatesGivenCsvRows() 
-            => throw new NotImplementedException();
+        public IEnumerable<string> GetUniqueSortedListOfStatesGivenCsvRows()
+        {
+           return CsvRows.ToList().Select(item => item.Split(',')[6]).Distinct();
+        }
 
         // 3.
         public string GetAggregateSortedListOfStatesUsingCsvRows()
