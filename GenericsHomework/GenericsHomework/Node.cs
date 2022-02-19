@@ -1,13 +1,22 @@
-﻿namespace GenericsHomework
+﻿using System.Collections;
+
+namespace GenericsHomework
 {
-    public class Node<T> where T : notnull //maybe make this nullable...
+    public class Node<T> : IEnumerable<Node<T>>
     {
-        private int[] _Count = { 0 }; //should be converted to a shared int using references
         private Node<T> _Next;
-        private T _Value;
-        public T Value => _Value;
-        public int Count => _Count[0];
-        public Node<T> Next => _Next;
+
+        public T? Value { get; private set;}
+
+        public Node<T> Next
+        {
+            get { return _Next; }
+            private set
+            {
+                value._Next = _Next;
+                _Next = value;
+            }
+        }
         private Node<T> Last
         {
             get
@@ -21,77 +30,67 @@
             }
         }
 
-        public Node(T value)
-            {
-            if(value is null)
-            {
-                throw new ArgumentNullException(nameof(value));
-            }
-            _Next = this;
-            _Value = value;
-            _Count[0]++;
-            }
-
-        private Node(T value, Node<T> next, int[] size)
+        public Node(T? value)
         {
-            if (value is null)
-            {
-                throw new ArgumentNullException(nameof(value));
-            }
-            _Next = next;
-            _Value = value;
-            _Count = size;
-            _Count[0]++;
+            _Next = this;
+            Value = value;
         }
 
-        public void Append(T value)
+        public void Append(T? value)
         {
             if (Exists(value))
             {
-                throw new ArgumentException(message: "Value already exists in these nodes", nameof(value));
+                throw new ArgumentException(message: "Value already exists in this NodeCollection", nameof(value));
             }
-            _Next = new Node<T>(value, _Next, _Count);
-        }
+            Next = new Node<T>(value);
+        } 
 
-        public bool Exists(T value)
+        public bool Exists(T? value)
         {
-            Node<T> cursor = this;
-            for (int i = 0 ; i < Count; i++)
+            foreach (var node in this)
             {
-                if (cursor.Value.Equals(value))
+                if (node.Value is null)
+                {
+                    if (value is null)
+                    {
+                        return true;
+                    }
+                }
+                else if (node.Value.Equals(value))
                 {
                     return true;
                 }
-                cursor = cursor.Next;
             }
             return false;
         }
-        public override string ToString()
-        {
-            Node<T> cursor = this;
-            string result = $"{this.Value}";
-            for (int i = 1; i < Count; i++)
-            {
-                cursor = cursor.Next;
-                result = $"{result}, {cursor.Value}";
-            }
-            return $"[{result}]";
-        }
+        public override string ToString() => $"{Value}";
 
-        public void Clear()
+        //closes the loop for both peices in case a reference to the peice being cleared is saved
+        //making all nodes always valid and no Next fields null
+        public void Clear() 
         {
             if (Next.Equals(this))
             {
                 return;
             }
-            _Count[0]--;
             Last._Next = Next;
-
             _Next = this;
-
-            int[] size = { 1 };
-            this._Count = size;
-
         }
+
+        public IEnumerator<Node<T>> GetEnumerator()
+        {
+            Node<T> current = this;
+            do
+            {
+                yield return current;
+                current = current.Next;
+            } while (current != this);
+        }
+
+        IEnumerator IEnumerable.GetEnumerator()
+        {
+            yield return (IEnumerable)GetEnumerator();
+        }
+
     }
 }
