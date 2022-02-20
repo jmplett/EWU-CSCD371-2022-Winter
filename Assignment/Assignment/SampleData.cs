@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 
 namespace Assignment
@@ -25,8 +25,18 @@ namespace Assignment
         }
 
         // 4.
-        public IEnumerable<IPerson> People => throw new NotImplementedException();
-
+        public IEnumerable<IPerson> People
+        {
+            get
+            {
+                return CsvRows.Select(item => item.Split(',')).Select(rows =>
+                    new Person(
+                        rows[1],
+                        rows[2],
+                        new Address(rows[4], rows[5], rows[6], rows[7]),
+                        rows[3]));
+            }
+        }
         // 5.
         public IEnumerable<(string FirstName, string LastName)> FilterByEmailAddress(
             Predicate<string> filter) => throw new NotImplementedException();
