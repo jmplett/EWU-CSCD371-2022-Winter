@@ -2,6 +2,8 @@
 
 namespace GenericsHomework
 {
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Naming", "CA1710:Identifiers should have correct suffix", 
+        Justification = "According to the assignment this class should be named Node")]
     public class Node<T> : IEnumerable<Node<T>>
     {
         private Node<T> _Next;
@@ -92,5 +94,32 @@ namespace GenericsHomework
             yield return (IEnumerable)GetEnumerator();
         }
 
+        public IEnumerable<Node<T>> ChildItems(int maximum)
+        {
+            int count = 0;
+            foreach (var node in this)
+            {
+                if(count < maximum)
+                {
+                    yield return node;
+                }
+                else
+                {
+                    yield break;
+                }
+                count++;
+            }
+        }
+
+        public IEnumerable<Node<T>> ChildItemsV2(int maximum)
+        {
+            Node<T> current = this;
+            
+            for(int count = 1; count < maximum; ++count)
+            {
+                yield return current;
+                current=current.Next;
+            }
+        }
     }
 }

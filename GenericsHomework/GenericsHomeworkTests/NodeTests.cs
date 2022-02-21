@@ -184,5 +184,66 @@ namespace GenericsHomeworkTests
 
             Assert.AreEqual(4, count);
         }
+
+        [TestMethod]
+        public void SimpleTest_ForEachChildItems_ReturnsLessThenMaximum()
+        {
+            Node<int> node = new(1);
+            node.Append(5);
+            node.Append(4);
+            node.Append(3);
+            node.Append(2);
+
+            int count = 0;
+            foreach (var item in node.ChildItems(0))
+            {
+                count++;
+            }
+
+            Assert.AreEqual(0, count);
+
+
+            count = 0;
+            foreach (var item in node.ChildItems(1))
+            {
+                count++;
+            }
+            Assert.AreEqual(0, count);
+
+
+            count = 0;
+            foreach (var item in node.ChildItems(2))
+            {
+                count++;
+            }
+            Assert.AreEqual(1, count);
+
+
+            count = 0;
+            foreach (var item in node.ChildItems(3))
+            {
+                count++;
+            }
+            Assert.AreEqual(2, count);
+        }
+
+        [TestMethod]
+        public void SimpleTest_ForEachChildItems_ReturnsEachOnlyOnce()
+        {
+            Node<int> node = new(1);
+            node.Append(5);
+            node.Append(4);
+            node.Append(3);
+            node.Append(2);
+
+            int count = 0;
+            foreach (var item in node.ChildItems(10))
+            {
+                count++;
+            }
+            Assert.AreNotEqual(10, count);
+
+            Assert.AreEqual(5, count);
+        }
     }
 }
