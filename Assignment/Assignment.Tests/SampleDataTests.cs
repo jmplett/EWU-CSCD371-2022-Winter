@@ -61,6 +61,23 @@ namespace Assignment.Tests
 			Assert.AreEqual<(string, string)>(("Claudell", "Leathe"), testData.FilterByEmailAddress(filter).Last());
 			Assert.AreEqual<int>(5, testData.FilterByEmailAddress(filter).Count());
 		}
+
+        [TestMethod]
+        public void GivenPeople_GetAggregateListOfStates_CheckIfUniqueStatesMatch()
+        {
+			SampleData testData = new();
+            string? states = testData.GetAggregateListOfStatesGivenPeopleCollection(testData.People);
+			Assert.AreEqual<string>("AL,AZ,CA,DC,FL,GA,IN,KS,LA,MD,MN,MO,MT,NC,NE,NH,NV,NY,OR,PA,SC,TN,TX,UT,VA,WA,WV", states);
+		}
+
+        [TestMethod]
+        public void GivenUniqueStatesFromPeopleAndCsvRows_SuccessWhenMatching()
+        {
+			SampleData testData = new();
+			Assert.AreEqual(
+				testData.GetAggregateSortedListOfStatesUsingCsvRows(),
+				testData.GetAggregateListOfStatesGivenPeopleCollection(testData.People));
+        }
 	}
 }
 
