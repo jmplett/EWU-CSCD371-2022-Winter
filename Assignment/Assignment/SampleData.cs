@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace Assignment
 {
@@ -39,7 +40,12 @@ namespace Assignment
         }
         // 5.
         public IEnumerable<(string FirstName, string LastName)> FilterByEmailAddress(
-            Predicate<string> filter) => throw new NotImplementedException();
+            Predicate<string> filter)
+        {
+            return People
+                .Where(person => filter(person.EmailAddress))
+                .Select(person => (person.FirstName, person.LastName));
+        }
 
         // 6.
         public string GetAggregateListOfStatesGivenPeopleCollection(
