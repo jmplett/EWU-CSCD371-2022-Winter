@@ -46,6 +46,21 @@ namespace Assignment.Tests
 			Assert.AreEqual("Claudell,Leathe", $"{testData.People.Last().FirstName},{testData.People.Last().LastName}");
 			Assert.AreEqual(50, Enumerable.Count(testData.People));
 		}
+
+        [TestMethod]
+        public void FilterByEmailAddress_ReturnsMatchingFirstLastNames()
+        {
+			SampleData testData = new();
+
+			Predicate<string> filter = email => email == "pjenyns0@state.gov";
+			Assert.AreEqual<(string, string)>(("Priscilla","Jenyns"),testData.FilterByEmailAddress(filter).First());
+			Assert.AreEqual<int>(1, testData.FilterByEmailAddress(filter).Count());
+
+			filter = email => email.Contains(".edu");
+			Assert.AreEqual<(string, string)>(("Fremont","Pallaske"), testData.FilterByEmailAddress(filter).First());
+			Assert.AreEqual<(string, string)>(("Claudell", "Leathe"), testData.FilterByEmailAddress(filter).Last());
+			Assert.AreEqual<int>(5, testData.FilterByEmailAddress(filter).Count());
+		}
 	}
 }
 
