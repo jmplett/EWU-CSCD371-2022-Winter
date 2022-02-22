@@ -66,7 +66,14 @@ namespace Assignment.Tests
         public void GivenPeople_GetAggregateListOfStates_CheckIfUniqueStatesMatch()
         {
 			SampleData testData = new();
-            string? states = testData.GetAggregateListOfStatesGivenPeopleCollection(testData.People);
+            
+			IEnumerable<IPerson>? pPeople = testData.People.Where(person => person.FirstName.StartsWith('P')).Select(person => person);
+			Assert.AreEqual(2, pPeople.Count());
+
+			string? states = testData.GetAggregateListOfStatesGivenPeopleCollection(pPeople);
+			Assert.AreEqual<string>("MT,WA", states);
+
+			states = testData.GetAggregateListOfStatesGivenPeopleCollection(testData.People);
 			Assert.AreEqual<string>("AL,AZ,CA,DC,FL,GA,IN,KS,LA,MD,MN,MO,MT,NC,NE,NH,NV,NY,OR,PA,SC,TN,TX,UT,VA,WA,WV", states);
 		}
 
