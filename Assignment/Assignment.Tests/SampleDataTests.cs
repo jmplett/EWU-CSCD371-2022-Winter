@@ -38,7 +38,14 @@ namespace Assignment.Tests
 			Assert.IsTrue(testData.CsvRows.SequenceEqual(testData.CsvRows.OrderBy(item=>item)));
         }
 
-
+        [TestMethod]
+        public void People_GetsAllRows_AllRowsMatch()
+        {
+			SampleData testData = new();
+			Assert.AreEqual("Priscilla,Jenyns", $"{testData.People.First().FirstName},{testData.People.First().LastName}");
+			Assert.AreEqual("Claudell,Leathe", $"{testData.People.Last().FirstName},{testData.People.Last().LastName}");
+			Assert.AreEqual(50, Enumerable.Count(testData.People));
+		}
 	}
 }
 
