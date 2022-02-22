@@ -34,9 +34,11 @@ namespace Assignment.Tests
 		public void SortRowsByState_ChecksIfStatesInOrder_SuccessWhenInOrder()
         {
 			SampleData testData = new();
-			testData.GetUniqueSortedListOfStatesGivenCsvRows();
-			Assert.IsTrue(testData.CsvRows.SequenceEqual(testData.CsvRows.OrderBy(item=>item)));
-        }
+			Assert.AreEqual(testData.GetUniqueSortedListOfStatesGivenCsvRows().First(), (testData.GetUniqueSortedListOfStatesGivenCsvRows().OrderBy(item=>item).First()));
+			Assert.AreEqual(testData.GetUniqueSortedListOfStatesGivenCsvRows().Last(), (testData.GetUniqueSortedListOfStatesGivenCsvRows().OrderBy(item => item).Last()));
+			Assert.IsTrue(testData.GetUniqueSortedListOfStatesGivenCsvRows().SequenceEqual(testData.GetUniqueSortedListOfStatesGivenCsvRows().OrderBy(item => item)));
+
+		}
 
         [TestMethod]
         public void People_GetsAllRows_AllRowsMatch()
