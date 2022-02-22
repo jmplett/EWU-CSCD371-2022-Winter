@@ -49,7 +49,11 @@ namespace Assignment
 
         // 6.
         public string GetAggregateListOfStatesGivenPeopleCollection(
-            IEnumerable<IPerson> people) => throw new NotImplementedException();
+            IEnumerable<IPerson> people)
+        {
+            List<string>? states = People.Select(person => person.Address.State).Distinct().ToList();
+            return String.Join(",", states);
+        }
 
     }
 }
