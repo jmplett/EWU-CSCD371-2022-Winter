@@ -30,7 +30,10 @@ namespace Assignment
         {
             get
             {
-                return CsvRows.Select(item => item.Split(',')).Select(rows =>
+                return CsvRows
+                    .Select(item => item.Split(','))
+                    .OrderBy(rows => rows[6]).ThenBy(rows => rows[5]).ThenBy(rows => rows[4])
+                    .Select(rows =>
                     new Person(
                         rows[1],
                         rows[2],
@@ -51,8 +54,10 @@ namespace Assignment
         public string GetAggregateListOfStatesGivenPeopleCollection(
             IEnumerable<IPerson> people)
         {
-            List<string>? states = people.Select(person => person.Address.State).Distinct().OrderBy(item=>item).ToList();
-            return String.Join(",", states);
+           return people
+                .Select(person => person.Address.State)
+                .Distinct()
+                .Aggregate((states, nextState) => $"{states},{nextState}");
         }
 
     }

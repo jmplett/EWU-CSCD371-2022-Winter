@@ -41,11 +41,27 @@ namespace Assignment.Tests
 		}
 
         [TestMethod]
-        public void People_GetsAllRows_AllRowsMatch()
+        public void People_ContainsAllFields()
         {
 			SampleData testData = new();
-			Assert.AreEqual("Priscilla,Jenyns", $"{testData.People.First().FirstName},{testData.People.First().LastName}");
-			Assert.AreEqual("Claudell,Leathe", $"{testData.People.Last().FirstName},{testData.People.Last().LastName}");
+			var person = testData.People.First();
+			string test = 
+				person.FirstName + "," + 
+				person.LastName + "," + 
+				person.EmailAddress + "," + 
+				person.Address.StreetAddress + "," + 
+				person.Address.City + "," + 
+				person.Address.State + "," + 
+				person.Address.Zip;
+			Assert.AreEqual("Arthur,Myles,amyles1c@miibeian.gov.cn,4718 Thackeray Pass,Mobile,AL,37308", test);
+        }
+
+        [TestMethod]
+        public void People_GetsAllRows_MatchSortedFirstLast()
+        {
+			SampleData testData = new();
+			Assert.AreEqual("Arthur,Myles", $"{testData.People.First().FirstName},{testData.People.First().LastName}");
+			Assert.AreEqual("Amelia,Toal", $"{testData.People.Last().FirstName},{testData.People.Last().LastName}");
 			Assert.AreEqual(50, Enumerable.Count(testData.People));
 		}
 
@@ -60,7 +76,7 @@ namespace Assignment.Tests
 
 			filter = email => email.Contains(".edu");
 			Assert.AreEqual<(string, string)>(("Fremont","Pallaske"), testData.FilterByEmailAddress(filter).First());
-			Assert.AreEqual<(string, string)>(("Claudell", "Leathe"), testData.FilterByEmailAddress(filter).Last());
+			Assert.AreEqual<(string, string)>(("Fayette", "Dougherty"), testData.FilterByEmailAddress(filter).Last());
 			Assert.AreEqual<int>(5, testData.FilterByEmailAddress(filter).Count());
 		}
 
