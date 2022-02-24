@@ -7,11 +7,13 @@ namespace Assignment.Tests
 	public class SampleDataTests
 	{
 		[TestMethod]
-		public void CSVRows_GetsAllTheRows_AllTheRowsMatch()
+		public void CSVRows_GetsAllTheRows_TheRowsMatch()
 		{
 			SampleData testData = new ();
 
 			Assert.AreEqual("1,Priscilla,Jenyns,pjenyns0@state.gov,7884 Corry Way,Helena,MT,70577", testData.CsvRows.First());
+			Assert.AreEqual("15,Phillida,Chastagnier,pchastagniere@reference.com,1 Rutledge Point,Spokane,WA,99021", testData.CsvRows.ElementAt(14));
+			Assert.AreEqual("25,Jedd,Boissier,jboissiero@cbsnews.com,1 Arrowood Crossing,San Diego,CA,96101", testData.CsvRows.ElementAt(24));
 			Assert.AreEqual("50,Claudell,Leathe,cleathe1d@columbia.edu,30262 Steensland Way,Newport News,VA,87930", testData.CsvRows.Last());
 			Assert.AreEqual(50, Enumerable.Count(testData.CsvRows));
 		}
