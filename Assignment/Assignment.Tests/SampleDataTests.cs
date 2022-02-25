@@ -33,6 +33,23 @@ namespace Assignment.Tests
         }
 
 		[TestMethod]
+		public void SortRowsByState_HardCodedSpokaneAddresses_SuccessWhenOnly1RecordReturned()
+		{
+			SampleData testData = new();
+
+            List<string> addresses = new();
+			addresses.Add("8,Joly,Scneider,jscneider7@pagesperso-orange.fr,53 Grim Point,Spokane,WA,99022");
+			addresses.Add("15,Phillida,Chastagnier,pchastagniere@reference.com,1 Rutledge Point,Spokane,WA,99021");
+			addresses.Add("19,Fayette,Dougherty,fdoughertyi@stanford.edu,6487 Pepper Wood Court,Spokane,WA,99021");
+
+			IEnumerable <string> spokaneAddresses = addresses.Select(item => item.Split(',')[6]).Distinct();
+			IEnumerable<string> testDataAddresses = testData.GetUniqueSortedListOfStatesGivenCsvRows();
+
+			Assert.AreEqual(spokaneAddresses.Count(), testDataAddresses.Select(item => "WA").Distinct().Count());
+
+		}
+
+		[TestMethod]
 		public void SortRowsByState_ChecksIfStatesInOrder_SuccessWhenInOrder()
         {
 			SampleData testData = new();
