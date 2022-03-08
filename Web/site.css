@@ -83,7 +83,7 @@ button:hover {
 }
 
 .blueButton {
-    background-color: lightblue;
+    background-image: linear-gradient(to right, lightblue, lightgray, lightblue);
 }
 
 .card button {
