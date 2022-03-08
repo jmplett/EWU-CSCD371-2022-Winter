@@ -42,8 +42,6 @@ header {
     width: 300px;
 }
 
-.dropDown {}
-
 .dropDown button {
     margin: 10px;
     display: block;
@@ -82,4 +80,12 @@ button:hover {
 .card {
     border: solid darkgray 2px;
     border-radius: 15px;
+}
+
+.blueButton {
+    background-color: lightblue;
+}
+
+.card button {
+    padding: 1%;
 }
