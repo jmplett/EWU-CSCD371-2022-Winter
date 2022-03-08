@@ -12,6 +12,8 @@ function getNewJoke() {
             let punchline = document.querySelector(".punchline");
 
             joke.innerText = response.data.setup;
-            punchline.innerText = response.data.delivery;
+            setTimeout(function() {
+                punchline.innerText = response.data.delivery;
+            }, 4000, response)
         })
 }
