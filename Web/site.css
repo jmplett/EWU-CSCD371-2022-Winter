@@ -1,7 +1,8 @@
 /*trying to set the whole body to use the middle 70% of the window*/
-.width {
-    align-content: center;
+
+body {
     width: 70%;
+    margin: auto;
 }
 
 .big {
@@ -16,9 +17,11 @@
     color: whitesmoke;
 }
 
-.red {
-    color: darkred;
-}
+
+.ewu {
+    color: #B7142E;
+
+
 
 header {
     position: fixed;
@@ -32,8 +35,36 @@ header div {
     margin-top: 16px;
 }
 
-.menu {
-    background-color: transparent;
-    border: 0;
+.dropItems {
+    display: none;
+    position: absolute;
+    right: 0;
+    background-color: white;
+    border: 3px solid gray;
+    transform-origin: top center;
+    max-width: 320px;
+}
+
+.dropItems button {
+    border-radius: 10px;
+    width: 300px;
+}
+
+.dropDown button {
+    margin: 10px;
+    display: block;
+}
+
+.show {
+    display: block;
+}
+
+button:hover {
+    opacity: 70%;
+}
+
+.menu_button {
+    background-image: linear-gradient(to right, #B7142E, gray);
     color: white;
+    float: right;
 }
