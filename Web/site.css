@@ -62,3 +62,24 @@ button:hover {
     color: white;
     float: right;
 }
+
+.cardHeader {
+    border-radius: 15px 15px 0 0;
+    padding: 15px;
+    background-color: lightgray;
+}
+
+.cardBody {
+    padding: 15px;
+    height: 125px;
+}
+
+.cardFooter {
+    padding: 15px;
+    border-top: solid darkgray 2px;
+}
+
+.card {
+    border: solid darkgray 2px;
+    border-radius: 15px;
+}
