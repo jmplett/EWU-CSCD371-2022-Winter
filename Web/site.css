@@ -31,3 +31,9 @@ header .fancy {
 header div {
     padding-top: 10px;
 }
+
+.menu {
+    background-color: transparent;
+    border: 0;
+    color: white;
+}
