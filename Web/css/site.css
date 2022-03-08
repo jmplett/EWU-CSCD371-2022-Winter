@@ -55,6 +55,11 @@ button:hover {
     opacity: 70%;
 }
 
+.menu {
+    background-color: transparent;
+    color: white;
+}
+
 .menu_button {
     background-image: linear-gradient(to right, #B7142E, gray);
     color: white;
