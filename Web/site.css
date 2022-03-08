@@ -19,22 +19,21 @@ body {
 
 .ewu {
     color: #B7142E;
+    display: inline;
 }
 
 header {
-    top: 0;
-    left: 0;
     width: 100%;
+    padding: 2%;
     background-color: black;
 }
 
 .dropItems {
     display: none;
-    position: absolute;
-    right: 0;
+    position: fixed;
+    right: 12%;
     background-color: white;
     border: 3px solid gray;
-    transform-origin: top center;
     max-width: 320px;
 }
 
@@ -43,13 +42,15 @@ header {
     width: 300px;
 }
 
+.dropDown {}
+
 .dropDown button {
     margin: 10px;
     display: block;
 }
 
 .show {
-    display: block;
+    display: inline;
 }
 
 button:hover {
