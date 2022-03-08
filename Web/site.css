@@ -1,0 +1,33 @@
+/*trying to set the whole body to use the middle 70% of the window*/
+.width {
+    align-content: center;
+    width: 70%;
+}
+
+.fancy {
+    font-size: xx-large;
+}
+
+.right {
+    float: right;
+}
+
+.white {
+    color: white;
+}
+
+header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: black;
+}
+
+header .fancy {
+    color:darkred;
+}
+
+header div {
+    padding-top: 10px;
+}
