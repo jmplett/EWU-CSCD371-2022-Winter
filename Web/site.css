@@ -22,15 +22,10 @@ body {
 }
 
 header {
-    position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     background-color: black;
-}
-
-header div {
-    margin-top: 16px;
 }
 
 .dropItems {
