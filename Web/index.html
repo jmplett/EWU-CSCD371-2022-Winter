@@ -31,17 +31,18 @@
                 <h2>A Joke</h2>
             </div>
             <div class="cardBody">
-                <p>Joke Setup</p>
-                <p>Joke Punchline</p>
+                <p class="joke"></p>
+                <p class="punchline"></p>
             </div>
             <div class="cardFooter">
-                <button class="blueButton">Another Joke</button>
-                <button>Joke API</button>
+                <button class="blueButton" onclick="getNewJoke()">Another Joke</button>
+                <a href="https://v2.jokeapi.dev/joke/Programming"><button>Joke API</button></a>
             </div>
         </div>
 
-        <script src="js/index.js"></script>
-        <script src="https://kit.fontawesome.com/8808ce2e4c.js" crossorigin="anonymous"></script>
+        <script src="js/index.js "></script>
+        <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+        <script src="https://kit.fontawesome.com/8808ce2e4c.js " crossorigin="anonymous "></script>
     </body>
 
 </html>
