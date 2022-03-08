@@ -1,7 +1,7 @@
 /*trying to set the whole body to use the middle 70% of the window*/
 
 body {
-    width: 70%;
+    width: 70vw;
     margin: auto;
 }
 
@@ -88,4 +88,12 @@ button:hover {
 
 .card button {
     padding: 1%;
+}
+
+.divider {
+    width: 100%;
+    height: 1px;
+    background-color: gray;
+    display: block;
+    margin: 2%;
 }

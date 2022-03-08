@@ -5,16 +5,13 @@ function showMenu() {
 function getNewJoke() {
     axios({
             method: 'get',
-            url: 'https://v2.jokeapi.dev/joke/Programming'
+            url: 'https://v2.jokeapi.dev/joke/Programming?type=twopart'
         })
         .then(function(response) {
             let joke = document.querySelector(".joke");
             let punchline = document.querySelector(".punchline");
 
-            var jokeString = response.data.setup;
-            var deliveryString = response.data.delivery;
-
-            joke.innerText = jokeString;
-            punchline.innerText = deliveryString;
+            joke.innerText = response.data.setup;
+            punchline.innerText = response.data.delivery;
         })
 }
