@@ -3,9 +3,11 @@ function showMenu() {
 }
 
 function getNewJoke() {
-    axios
-        .post('https://v2.jokeapi.dev/joke/Programming', {type: 'twopart'}, {timeout: 20000})
-        .then(response => {
+    axios({
+            method: 'get',
+            url: 'https://v2.jokeapi.dev/joke/Programming?type=twopart'
+        })
+        .then(function(response) {
             let joke = document.querySelector(".joke");
             let punchline = document.querySelector(".punchline");
 
@@ -17,12 +19,12 @@ function getNewJoke() {
                 punchline.innerText = response.data.delivery;
             }, 4000, response)
         })
-        .catch(err => {
-            console.log(err.toJSON());
-            document.querySelector(".joke").innerText = "The Joke API has encountered an error."
-            document.querySelector(".punchline").innerText = err;
+        .catch(function (error) {
+            console.log(error.toJSON());
+            joke.innerText = "The Joke API has encountered an error"
+            punchline.innerText = error;
             setTimeout(function() {
                 getNewJoke();
-            }, 5000)
+            }, 1000)
         });
 }
