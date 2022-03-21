@@ -9,6 +9,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PingProcessHomework.Test", 
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MultithreadingStuff", "..\MultithreadingStuff\MultithreadingStuff.csproj", "{79F61138-526C-4606-A9BD-2DCEC34A8F2C}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MultithreadingStuff.Tests", "..\MultithreadingStuff.Tests\MultithreadingStuff.Tests.csproj", "{3BA7F969-A00B-463F-ADE5-B8616637A7A9}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{79F61138-526C-4606-A9BD-2DCEC34A8F2C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{79F61138-526C-4606-A9BD-2DCEC34A8F2C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{79F61138-526C-4606-A9BD-2DCEC34A8F2C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3BA7F969-A00B-463F-ADE5-B8616637A7A9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3BA7F969-A00B-463F-ADE5-B8616637A7A9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3BA7F969-A00B-463F-ADE5-B8616637A7A9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3BA7F969-A00B-463F-ADE5-B8616637A7A9}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
