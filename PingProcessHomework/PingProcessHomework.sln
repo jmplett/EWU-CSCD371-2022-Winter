@@ -3,9 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.0.32014.148
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PingProcessHomework", "PingProcessHomework\PingProcessHomework.csproj", "{F9A52ADD-EEAE-4321-A8A6-6E91EE53BDF0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PingProcessHomework", "PingProcessHomework\PingProcessHomework.csproj", "{F9A52ADD-EEAE-4321-A8A6-6E91EE53BDF0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PingProcessHomework.Test", "TestPingProcess\PingProcessHomework.Test.csproj", "{F03CB79A-8592-479B-B22F-7E6C4769E0FE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PingProcessHomework.Test", "TestPingProcess\PingProcessHomework.Test.csproj", "{F03CB79A-8592-479B-B22F-7E6C4769E0FE}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MultithreadingStuff", "..\MultithreadingStuff\MultithreadingStuff.csproj", "{79F61138-526C-4606-A9BD-2DCEC34A8F2C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{F03CB79A-8592-479B-B22F-7E6C4769E0FE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F03CB79A-8592-479B-B22F-7E6C4769E0FE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F03CB79A-8592-479B-B22F-7E6C4769E0FE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{79F61138-526C-4606-A9BD-2DCEC34A8F2C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{79F61138-526C-4606-A9BD-2DCEC34A8F2C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{79F61138-526C-4606-A9BD-2DCEC34A8F2C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{79F61138-526C-4606-A9BD-2DCEC34A8F2C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
