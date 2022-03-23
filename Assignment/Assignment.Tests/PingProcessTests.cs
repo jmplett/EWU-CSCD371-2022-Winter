@@ -1,4 +1,4 @@
-using IntelliTect.TestTools;
+﻿using IntelliTect.TestTools;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -128,7 +128,7 @@ public class PingProcessTests
         string[] hostNames = { "localhost", "localhost", "localhost", "localhost" };
         int expectedLineCount = PingOutputLikeExpression.Split(Environment.NewLine).Length* hostNames.Length;
         PingResult result = await Sut.RunAsync(hostNames);
-        int? lineCount = result.StdOutput?.Split(Environment.NewLine).Length;
+        Console.WriteLine(result.StdOutput?.Trim());
         int? lineCount = result.StdOutput?.Trim().Split(Environment.NewLine).Length;
         Assert.AreEqual(expectedLineCount, lineCount);
     }

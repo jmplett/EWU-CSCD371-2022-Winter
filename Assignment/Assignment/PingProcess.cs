@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Diagnostics;
@@ -40,7 +40,8 @@ public class PingProcess
         return task.Result;
     }
 
-    async public Task<PingResult> RunAsync(params string[] hostNameOrAddresses)
+    async public Task<PingResult> RunAsync(IEnumerable<string> hostNameOrAddresses,
+        CancellationToken cancellationToken = default)
     {
         StringBuilder? stringBuilder = null;
 
@@ -51,7 +52,6 @@ public class PingProcess
 
         ParallelQuery<Task<int>>? all = hostNameOrAddresses.AsParallel().Select(async item =>
         {
-            Console.WriteLine(item);
             StartInfo.Arguments = item;
 
             Task<PingResult> task = Task.Run(() =>
@@ -61,12 +61,12 @@ public class PingProcess
                 void internalProgressOutput(string? line) =>
                     (internalStringBuilder ??= new StringBuilder()).AppendLine(line);
 
-                Process process = RunProcessInternal(StartInfo, internalProgressOutput, default, default(CancellationToken));
-                default(CancellationToken).ThrowIfCancellationRequested();
+                Process process = RunProcessInternal(StartInfo, internalProgressOutput, default, cancellationToken);
+                cancellationToken.ThrowIfCancellationRequested();
                 return new PingResult( process.ExitCode, internalStringBuilder?.ToString());
-            });
+            }, cancellationToken);
 
-            await task.WaitAsync(default(CancellationToken));
+            await task.WaitAsync(cancellationToken);
 
             PingResult result = task.Result;
             progressOutput(result.StdOutput?.Trim());
@@ -78,12 +78,14 @@ public class PingProcess
         return new PingResult(total, stringBuilder?.ToString());
     }
 
+#pragma warning disable CS1998 // Async method lacks 'await' operators and will run synchronously
     async public Task<PingResult> RunLongRunningAsync(
         string hostNameOrAddress, CancellationToken cancellationToken = default)
     {
         Task<PingResult> task = Task.Factory.StartNew(() => Run(hostNameOrAddress), cancellationToken, TaskCreationOptions.LongRunning, TaskScheduler.Current);
         return task.Result;
     }
+#pragma warning restore CS1998 // Async method lacks 'await' operators and will run synchronously
 
     private Process RunProcessInternal(
         ProcessStartInfo startInfo,
