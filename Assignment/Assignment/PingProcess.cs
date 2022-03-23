@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Diagnostics;
@@ -43,17 +43,38 @@ public class PingProcess
     async public Task<PingResult> RunAsync(params string[] hostNameOrAddresses)
     {
         StringBuilder? stringBuilder = null;
+
+        void progressOutput(string? line) =>
+            (stringBuilder ??= new StringBuilder()).AppendLine(line);
+
+        int total = 0;
+
         ParallelQuery<Task<int>>? all = hostNameOrAddresses.AsParallel().Select(async item =>
         {
-            Task<PingResult> task = null!;
-            // ...
+            Console.WriteLine(item);
+            StartInfo.Arguments = item;
+
+            Task<PingResult> task = Task.Run(() =>
+            {
+                StringBuilder? internalStringBuilder = null;
+
+                void internalProgressOutput(string? line) =>
+                    (internalStringBuilder ??= new StringBuilder()).AppendLine(line);
+
+                Process process = RunProcessInternal(StartInfo, internalProgressOutput, default, default(CancellationToken));
+                default(CancellationToken).ThrowIfCancellationRequested();
+                return new PingResult( process.ExitCode, internalStringBuilder?.ToString());
+            });
 
             await task.WaitAsync(default(CancellationToken));
-            return task.Result.ExitCode;
+
+            PingResult result = task.Result;
+            progressOutput(result.StdOutput?.Trim());
+            Interlocked.Add(ref total, result.ExitCode);
+            return result.ExitCode;
         });
 
         await Task.WhenAll(all);
-        int total = all.Aggregate(0, (total, item) => total + item.Result);
         return new PingResult(total, stringBuilder?.ToString());
     }
 
