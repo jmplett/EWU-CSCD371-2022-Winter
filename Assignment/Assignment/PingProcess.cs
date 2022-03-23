@@ -77,15 +77,12 @@ public class PingProcess
         await Task.WhenAll(all);
         return new PingResult(total, stringBuilder?.ToString());
     }
-
-#pragma warning disable CS1998 // Async method lacks 'await' operators and will run synchronously
-    async public Task<PingResult> RunLongRunningAsync(
+    public Task<PingResult> RunLongRunningAsync(
         string hostNameOrAddress, CancellationToken cancellationToken = default)
     {
-        Task<PingResult> task = Task.Factory.StartNew(() => Run(hostNameOrAddress), cancellationToken, TaskCreationOptions.LongRunning, TaskScheduler.Current);
-        return task.Result;
+        return Task.Factory.StartNew(() => 
+        Run(hostNameOrAddress), cancellationToken, TaskCreationOptions.LongRunning, TaskScheduler.Current);
     }
-#pragma warning restore CS1998 // Async method lacks 'await' operators and will run synchronously
 
     private Process RunProcessInternal(
         ProcessStartInfo startInfo,
